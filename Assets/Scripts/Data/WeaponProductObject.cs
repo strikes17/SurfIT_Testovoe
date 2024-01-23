@@ -10,5 +10,10 @@ namespace Shop
 
         public int BaseDamage => _baseDamage;
         public float Weight => _weight;
+
+        public override AbstractProduct CreateInstance()
+        {
+            return new WeaponProduct();
+        }
     }
 }

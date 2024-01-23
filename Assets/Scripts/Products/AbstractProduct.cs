@@ -2,6 +2,7 @@
 {
     public abstract class AbstractProduct
     {
+        protected string _internalName;
         protected CurrencyType _currencyType;
         protected int _cost, _maxCount, _availableCount;
 
@@ -28,5 +29,7 @@
             get => _availableCount;
             set => _availableCount = value;
         }
+
+        public string InternalName => _internalName;
     }
 }

@@ -2,6 +2,6 @@
 {
     public enum CurrencyType
     {
-        Gold, Gem, Usd, Rub
+        Gold = 1, Gem = 2, Usd = 3, Rub = 4
     }
 }

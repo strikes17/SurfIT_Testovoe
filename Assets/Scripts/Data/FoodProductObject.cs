@@ -11,5 +11,10 @@ namespace Shop
 
         public float Weight => _weight;
         public DateCompound ExpirationDate => _expirationDate;
+
+        public override AbstractProduct CreateInstance()
+        {
+            return new FoodProduct();
+        }
     }
 }
