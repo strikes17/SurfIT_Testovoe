@@ -17,9 +17,9 @@ namespace Shop
         public int PhysicalProtectionValue => _physicalProtectionValue;
         public int FireProtectionValue => _fireProtectionValue;
         public WearBodyTarget BodyTarget => _bodyTarget;
-        public override AbstractProduct CreateInstance()
+        public override AbstractProduct CreateProductInstance()
         {
-            return new WearProduct();
+            return new WearProduct(this);
         }
     }
 }

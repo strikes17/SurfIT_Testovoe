@@ -5,46 +5,6 @@ using UnityEngine;
 
 namespace Shop
 {
-    public class PlayerManager : MonoBehaviour
-    {
-        protected Dictionary<CurrencyType, int> _resources;
-        protected Dictionary<string, AbstractProduct> _products = new();
-
-        public Dictionary<CurrencyType, int> Resources => _resources;
-
-        public void AddProduct(AbstractProduct product)
-        {
-            _products.Add(product.InternalName, product);
-        }
-
-        public void RemoveProductByInternalName(string name)
-        {
-            _products.Remove(name);
-        }
-    }
-
-    public class ShopTransaction
-    {
-        public BaseProductObject ProductObject;
-        public Dictionary<CurrencyType, int> Offer;
-        public Dictionary<CurrencyType, int> Cost;
-        public float TimeToExpire;
-
-        public int Success
-        {
-            get
-            {
-                foreach (var (key, value) in Cost)
-                {
-                    bool enough = Offer[key] >= value;
-                    if (!enough) return (int)key;
-                }
-
-                return 0;
-            }
-        }
-    }
-
     public class ProductsManager : MonoBehaviour
     {
         [SerializeField] private List<ProductsDatabaseObject> _productsDatabaseObjects;
@@ -56,26 +16,41 @@ namespace Shop
             LoadProductsInGui();
         }
 
-        private void TryToMakeADeal(BaseProductObject productObject, CurrencyType currencyType)
+        private void CreateShopTransaction(BaseProductObject productObject, CurrencyType currencyType)
         {
             ShopTransaction shopTransaction = new ShopTransaction()
             {
                 Cost = new Dictionary<CurrencyType, int>(),
                 Offer = new Dictionary<CurrencyType, int>(),
                 ProductObject = productObject,
-                TimeToExpire = 100f
+                TimeToExpire = productObject.TimeToExpire
             };
-            var transactionSuccess = shopTransaction.Success;
-            if (transactionSuccess == 0)
+            var productCost = productObject.Cost;
+            foreach (var currencyCompound in productCost)
             {
-                var product = shopTransaction.ProductObject.CreateInstance();
+                shopTransaction.Cost.Add(currencyCompound.CurrencyType, currencyCompound.Value);
+            }
+
+            var playerResources = _playerManager.Resources;
+            shopTransaction.Offer = playerResources;
+
+            var transactionCode = shopTransaction.IsPossible;
+            if (transactionCode == 0)
+            {
+                var product = shopTransaction.ProductObject.CreateProductInstance();
                 _playerManager.AddProduct(product);
+                shopTransaction.Accomplish();
+                Debug.Log("Success!");
+            }
+            else
+            {
+                Debug.Log($"Failed! Not enough {(CurrencyType)transactionCode}");
             }
         }
 
         private void LoadProductsInGui()
         {
-            _guiManager.ShopWidget.PurchaseButtonClicked += TryToMakeADeal;
+            _guiManager.ShopWidget.PurchaseButtonClicked += CreateShopTransaction;
             foreach (var databaseObject in _productsDatabaseObjects)
             {
                 var products = databaseObject.Products;

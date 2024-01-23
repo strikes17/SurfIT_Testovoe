@@ -4,5 +4,16 @@
     {
         protected float _weight;
         protected DateCompound _expirationDate;
+
+        public FoodProduct(FoodProductObject foodProductObject)
+        {
+            _weight = foodProductObject.Weight;
+            _expirationDate = foodProductObject.ExpirationDate;
+        }
+
+        public FoodProduct()
+        {
+            
+        }
     }
 }

@@ -10,6 +10,7 @@ namespace Shop
         [SerializeField] protected List<CurrencyCompound> _cost;
         [SerializeField] protected int _maxCount;
         [SerializeField] protected string _title;
+        [SerializeField] protected float _timeToExpire;
         [SerializeField] [TextArea] protected string _description;
 
         public List<CurrencyCompound> Cost => _cost;
@@ -17,7 +18,8 @@ namespace Shop
         public string Title => _title;
         public string Description => _description;
         public Sprite IconSprite => _iconSprite;
+        public float TimeToExpire => _timeToExpire;
 
-        public abstract AbstractProduct CreateInstance();
+        public abstract AbstractProduct CreateProductInstance();
     }
 }

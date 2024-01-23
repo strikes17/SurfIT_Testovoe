@@ -12,9 +12,9 @@ namespace Shop
         public float Weight => _weight;
         public DateCompound ExpirationDate => _expirationDate;
 
-        public override AbstractProduct CreateInstance()
+        public override AbstractProduct CreateProductInstance()
         {
-            return new FoodProduct();
+            return new FoodProduct(this);
         }
     }
 }

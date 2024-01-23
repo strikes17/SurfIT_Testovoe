@@ -7,5 +7,15 @@
 
         public int BaseDamage => _baseDamage;
         public float Weight => _weight;
+
+        public WeaponProduct(WeaponProductObject weaponProductObject)
+        {
+            _baseDamage = weaponProductObject.BaseDamage;
+            _weight = weaponProductObject.Weight;
+        }
+
+        public WeaponProduct()
+        {
+        }
     }
 }
