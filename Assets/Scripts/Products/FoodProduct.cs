@@ -1,10 +1,8 @@
-﻿using System;
-
-namespace Shop
+﻿namespace Shop
 {
     public class FoodProduct : AbstractProduct
     {
         protected float _weight;
-        protected DateTime _expirationDate;
+        protected DateCompound _expirationDate;
     }
 }

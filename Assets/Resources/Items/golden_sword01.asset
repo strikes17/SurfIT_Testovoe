@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe4893e215c04fb793ddd962f5f64408, type: 3}
+  m_Name: golden_sword01
+  m_EditorClassIdentifier: 
+  _cost:
+  - _currencyType: 1
+    _value: 1
+  - _currencyType: 0
+    _value: 100
+  _maxCount: 1
+  _title: Delightful Death
+  _description: 
+  _baseDamage: 101
+  _weight: 0.15

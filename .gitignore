@@ -1,6 +1,7 @@
 Library/
 Logs/
 Packages/
-ProjectSettings/
 Temp/
-UserSettings/
+*.meta
+*/idea
+*.meta*;

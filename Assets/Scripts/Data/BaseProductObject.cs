@@ -1,13 +1,19 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 namespace Shop
 {
     public abstract class BaseProductObject : ScriptableObject
     {
-        public int Cost;
-        public int MaxCount;
-        public CurrencyType CurrencyType;
-        public string Title;
-        [TextArea] public string Description;
+        [SerializeField] protected List<CurrencyCompound> _cost;
+        [SerializeField] protected int _maxCount;
+        [SerializeField] protected string _title;
+        [SerializeField] [TextArea] protected string _description;
+
+        public List<CurrencyCompound> Cost => _cost;
+        public int MaxCount => _maxCount;
+        public string Title => _title;
+        public string Description => _description;
     }
 }

@@ -1,6 +1,8 @@
-﻿namespace GUI
+﻿using UnityEngine;
+
+namespace Shop.GUI
 {
-    public class GUIBaseWidget
+    public class GUIBaseWidget : MonoBehaviour
     {
         
     }
