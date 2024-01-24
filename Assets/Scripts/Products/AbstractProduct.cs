@@ -1,10 +1,13 @@
-﻿namespace Shop
+﻿using UnityEngine;
+
+namespace Shop
 {
     public abstract class AbstractProduct
     {
         protected string _internalName;
         protected CurrencyType _currencyType;
         protected int _cost, _maxCount, _availableCount;
+        protected float _timeLeft;
 
         protected CurrencyType Type
         {
@@ -29,7 +32,23 @@
             get => _availableCount;
             set => _availableCount = value;
         }
+        
+        protected AbstractProduct(BaseProductObject baseProductObject)
+        {
+            _timeLeft = baseProductObject.TimeToExpire;
+            _internalName = baseProductObject.name;
+        }
 
+        protected AbstractProduct()
+        {
+        }
+        
         public string InternalName => _internalName;
+
+        public float TimeLeft
+        {
+            get => _timeLeft;
+            set => _timeLeft = value;
+        }
     }
 }

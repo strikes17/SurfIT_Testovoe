@@ -12,11 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb48c1da071341b5950e3118471e2b67, type: 3}
   m_Name: iron_armor01
   m_EditorClassIdentifier: 
-  _cost: 0
+  _iconSprite: {fileID: -5750353039905602045, guid: 787ba33702f747846b791630910acf8b, type: 3}
+  _cost:
+  - _currencyType: 1
+    _value: 100
+  - _currencyType: 2
+    _value: 1
   _maxCount: 0
-  _currencyType: 0
   _title: 
-  _description: 
+  _timeToExpire: 0
+  _description: 'hfgh
+
+'
   _physicalProtectionValue: 15
   _fireProtectionValue: 5
   _weight: 0

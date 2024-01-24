@@ -7,7 +7,7 @@ namespace Shop
     public class FoodProductObject : BaseProductObject
     {
         [SerializeField] protected float _weight;
-        [SerializeField] protected DateCompound _expirationDate;
+        [SerializeField] protected DateCompound _expirationDate = new();
 
         public float Weight => _weight;
         public DateCompound ExpirationDate => _expirationDate;

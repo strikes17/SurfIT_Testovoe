@@ -12,10 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe4893e215c04fb793ddd962f5f64408, type: 3}
   m_Name: steel_sword01
   m_EditorClassIdentifier: 
-  _cost: 0
+  _iconSprite: {fileID: 6937817954938267909, guid: 05efb8e0347dd4147af337438fe0708a, type: 3}
+  _cost:
+  - _currencyType: 1
+    _value: 125
+  - _currencyType: 2
+    _value: 5
   _maxCount: 0
-  _currencyType: 0
   _title: 
-  _description: 
+  _timeToExpire: 0
+  _description: fhh
   _baseDamage: 0
   _weight: 0

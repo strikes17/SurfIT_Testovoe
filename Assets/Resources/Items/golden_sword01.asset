@@ -12,13 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe4893e215c04fb793ddd962f5f64408, type: 3}
   m_Name: golden_sword01
   m_EditorClassIdentifier: 
+  _iconSprite: {fileID: 0}
   _cost:
   - _currencyType: 1
-    _value: 1
-  - _currencyType: 0
     _value: 100
+  - _currencyType: 2
+    _value: 1
   _maxCount: 1
   _title: Delightful Death
+  _timeToExpire: 0
   _description: 
   _baseDamage: 101
   _weight: 0.15

@@ -1,34 +1,19 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Shop
 {
     public class ShopTransaction
     {
         public BaseProductObject ProductObject;
-        public Dictionary<CurrencyType, int> Offer;
-        public Dictionary<CurrencyType, int> Cost;
+        public int Offer, Cost;
+        public CurrencyType CurrencyType;
         public float TimeToExpire;
 
-        public int IsPossible
+        public bool Accomplish()
         {
-            get
-            {
-                foreach (var (key, value) in Cost)
-                {
-                    bool enough = Offer[key] >= value;
-                    if (!enough) return (int)key;
-                }
-
-                return 0;
-            }
-        }
-
-        public void Accomplish()
-        {
-            foreach (var (key, value) in Offer)
-            {
-                Offer[key] -= Cost[key];
-            }
+            if (Offer >= Cost) return true;
+            return false;
         }
     }
 }

@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe4893e215c04fb793ddd962f5f64408, type: 3}
   m_Name: tisyacha_istin
   m_EditorClassIdentifier: 
+  _iconSprite: {fileID: -8038976213705442086, guid: dae6c5777cd6a3440af77e6b1173fb1a, type: 3}
   _cost:
   - _currencyType: 2
     _value: 99999
   _maxCount: 1
   _title: Sword Of Tisyacha Istin
+  _timeToExpire: 0
   _description: 
   _baseDamage: 999999
   _weight: 0.000001

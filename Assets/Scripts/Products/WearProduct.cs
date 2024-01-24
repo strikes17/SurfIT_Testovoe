@@ -16,7 +16,7 @@ namespace Shop
         public int FireProtectionValue => _fireProtectionValue;
         public WearBodyTarget BodyTarget => _bodyTarget;
 
-        public WearProduct(WearProductObject wearProductObject)
+        public WearProduct(WearProductObject wearProductObject): base(wearProductObject)
         {
             _bodyTarget = wearProductObject.BodyTarget;
             _physicalProtectionValue = wearProductObject.PhysicalProtectionValue;

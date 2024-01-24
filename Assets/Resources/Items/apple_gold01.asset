@@ -12,11 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a71c41f3a8244c9781a2f7f2ae4d56cf, type: 3}
   m_Name: apple_gold01
   m_EditorClassIdentifier: 
+  _iconSprite: {fileID: 0}
   _cost:
   - _currencyType: 1
     _value: 1
+  - _currencyType: 5
+    _value: 0
   _maxCount: 100
   _title: Gold Apple
+  _timeToExpire: 0
   _description: Sweet red apple!
   _weight: 0.5
   _expirationDate:

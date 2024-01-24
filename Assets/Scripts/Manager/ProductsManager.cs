@@ -16,35 +16,57 @@ namespace Shop
             LoadProductsInGui();
         }
 
-        private void CreateShopTransaction(BaseProductObject productObject, CurrencyType currencyType)
+        public GUIProductWidget GetProductWidget(string internalName)
         {
-            ShopTransaction shopTransaction = new ShopTransaction()
+            return _guiManager.ShopWidget.GetProductWidget(internalName);
+        }
+
+        private void CreateShopTransaction(GUIProductWidget productWidget, CurrencyType currencyType)
+        {
+            var productObject = productWidget.ProductObject;
+            if (_playerManager.IfPlayerHasItem(productObject.name))
             {
-                Cost = new Dictionary<CurrencyType, int>(),
-                Offer = new Dictionary<CurrencyType, int>(),
-                ProductObject = productObject,
-                TimeToExpire = productObject.TimeToExpire
-            };
-            var productCost = productObject.Cost;
-            foreach (var currencyCompound in productCost)
-            {
-                shopTransaction.Cost.Add(currencyCompound.CurrencyType, currencyCompound.Value);
+                return;
             }
 
             var playerResources = _playerManager.Resources;
-            shopTransaction.Offer = playerResources;
-
-            var transactionCode = shopTransaction.IsPossible;
-            if (transactionCode == 0)
+            var productCost = productObject.Cost;
+            int cost = 0, offer = 0;
+            foreach (var currencyCompound in productCost)
             {
-                var product = shopTransaction.ProductObject.CreateProductInstance();
+                if (currencyCompound.CurrencyType == currencyType)
+                    cost = currencyCompound.Value;
+            }
+
+            offer = playerResources[currencyType];
+
+            var shopTransaction = new ShopTransaction()
+            {
+                Offer = offer,
+                Cost = cost,
+                ProductObject = productObject,
+                TimeToExpire = productObject.TimeToExpire
+            };
+            AbstractProduct product = null;
+            if (currencyType == CurrencyType.Time)
+            {
+                product = shopTransaction.ProductObject.CreateProductInstance();
+                productWidget.LockState = ProductLockState.UnlockedTimered;
+                _playerManager.AddProductTimered(product, productObject.TimeToExpire);
+                Debug.Log("Success Timered Product!");
+            }
+            else if (shopTransaction.Accomplish())
+            {
+                product = shopTransaction.ProductObject.CreateProductInstance();
+                _playerManager.Resources[currencyType] -= shopTransaction.Cost;
+                productWidget.LockState = ProductLockState.Unlocked;
                 _playerManager.AddProduct(product);
-                shopTransaction.Accomplish();
                 Debug.Log("Success!");
             }
             else
             {
-                Debug.Log($"Failed! Not enough {(CurrencyType)transactionCode}");
+                productWidget.LockState = ProductLockState.Locked;
+                Debug.Log($"Failed! Not enough {currencyType.ToString()}");
             }
         }
 
@@ -56,7 +78,10 @@ namespace Shop
                 var products = databaseObject.Products;
                 foreach (var baseProductObject in products)
                 {
-                    _guiManager.ShopWidget.CreateProductWidgetInstance(baseProductObject);
+                    var widget = _guiManager.ShopWidget.CreateProductWidgetInstance(baseProductObject);
+                    widget.LockState = _playerManager.IfPlayerHasItem(baseProductObject.name)
+                        ? ProductLockState.Unlocked
+                        : ProductLockState.Locked;
                 }
             }
         }

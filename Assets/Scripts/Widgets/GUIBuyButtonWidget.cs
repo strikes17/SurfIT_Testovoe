@@ -23,7 +23,9 @@ namespace Shop.GUI
             get => _currencyType;
             set
             {
-                _currencyType = value; 
+                _currencyType = value;
+                _iconImage.sprite =
+                    ResourcesRepository<Sprite>.Instance.Get(GlobalVariables.CURRENCY_ICONS_PATH[_currencyType]);
             }
         }
     }
