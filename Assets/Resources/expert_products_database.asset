@@ -10,11 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c7987528fdb94b619e00bd5f763791fc, type: 3}
-  m_Name: novice_products_database
+  m_Name: expert_products_database
   m_EditorClassIdentifier: 
   _products:
-  - {fileID: 11400000, guid: 98210432a750210449f2f698e812c4d6, type: 2}
-  - {fileID: 11400000, guid: 10221938ec1514b44a477e2a7edfa679, type: 2}
-  - {fileID: 11400000, guid: feda067aedf3bdb419ecb744997c531d, type: 2}
   - {fileID: 11400000, guid: 97dbb3c28eadf7c46b048d477fcadf17, type: 2}
-  - {fileID: 11400000, guid: dc7773d4388ab6044b1d5e0944345fd5, type: 2}
+  - {fileID: 11400000, guid: a6246efdc8bd9314394bea1a168f6dd2, type: 2}

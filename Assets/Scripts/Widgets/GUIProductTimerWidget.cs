@@ -1,11 +1,12 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Shop.GUI
 {
     public class GUIProductTimerWidget : GUIBaseWidget
     {
-        [SerializeField] private TMP_Text _timerText;
+        [SerializeField] private Text _timerText;
 
         //Value comes in seconds
         public int Value

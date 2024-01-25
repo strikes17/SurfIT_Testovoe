@@ -7,7 +7,6 @@ namespace Shop
         protected string _internalName;
         protected CurrencyType _currencyType;
         protected int _cost, _maxCount, _availableCount;
-        protected float _timeLeft;
 
         protected CurrencyType Type
         {
@@ -35,7 +34,6 @@ namespace Shop
         
         protected AbstractProduct(BaseProductObject baseProductObject)
         {
-            _timeLeft = baseProductObject.TimeToExpire;
             _internalName = baseProductObject.name;
         }
 
@@ -44,11 +42,6 @@ namespace Shop
         }
         
         public string InternalName => _internalName;
-
-        public float TimeLeft
-        {
-            get => _timeLeft;
-            set => _timeLeft = value;
-        }
+        
     }
 }

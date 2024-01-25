@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Shop.GUI;
 using UnityEngine;
 
@@ -7,13 +8,38 @@ namespace Shop
 {
     public class ProductsManager : MonoBehaviour
     {
+        public delegate void OnProductTransactionEventDelegate(AbstractProduct product);
+
+        public event OnProductTransactionEventDelegate TransactionSuccess
+        {
+            add => _transactionSuccess += value;
+            remove => _transactionSuccess -= value;
+        }
+
+        private event OnProductTransactionEventDelegate _transactionSuccess;
+
+        protected virtual void OnTransactionSuccess(AbstractProduct product)
+        {
+            _transactionSuccess?.Invoke(product);
+        }
+
         [SerializeField] private List<ProductsDatabaseObject> _productsDatabaseObjects;
         [SerializeField] private GUIManager _guiManager;
         [SerializeField] private PlayerManager _playerManager;
 
-        private void Start()
+        private void Awake()
         {
             LoadProductsInGui();
+        }
+
+        public AbstractProduct GetProductInstanceFromDataObject(string internalName)
+        {
+            var b = _productsDatabaseObjects.FirstOrDefault(x => x.Products.FirstOrDefault()?.name == internalName);
+            if (b == null) return null;
+            var productObject = b.Products.FirstOrDefault(x => x.name == internalName);
+            if (productObject == null) return null;
+            var instance = productObject.CreateProductInstance();
+            return instance;
         }
 
         public void CreateShopTransaction(GUIProductWidget productWidget, CurrencyType currencyType)
@@ -48,6 +74,7 @@ namespace Shop
                 product = shopTransaction.ProductObject.CreateProductInstance();
                 productWidget.LockState = ProductLockState.UnlockedTimered;
                 _playerManager.AddProductTimered(product, productObject.TimeToExpire);
+                OnTransactionSuccess(product);
                 Debug.Log($"Unlocked Product: {product.InternalName} for {productObject.TimeToExpire}seconds!");
             }
             else if (currencyType == CurrencyType.Free)
@@ -55,6 +82,7 @@ namespace Shop
                 product = shopTransaction.ProductObject.CreateProductInstance();
                 productWidget.LockState = ProductLockState.Unlocked;
                 _playerManager.AddProduct(product);
+                OnTransactionSuccess(product);
                 Debug.Log($"Free Unlock Of Product! {product.InternalName}");
             }
             else if (shopTransaction.Accomplish())
@@ -63,6 +91,7 @@ namespace Shop
                 _playerManager.Resources[currencyType] -= shopTransaction.Cost;
                 productWidget.LockState = ProductLockState.Unlocked;
                 _playerManager.AddProduct(product);
+                OnTransactionSuccess(product);
                 Debug.Log(
                     $"Unlocked Product! {product.InternalName} for cost of: {shopTransaction.Cost} {currencyType}");
             }

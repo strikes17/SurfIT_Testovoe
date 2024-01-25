@@ -7,7 +7,7 @@ namespace Shop.GUI
     public class GUIBuyButtonWidget : GUIBaseWidget
     {
         [SerializeField] private Image _iconImage;
-        [SerializeField] private TMP_Text _costText;
+        [SerializeField] private Text _costText;
         [SerializeField] private Button _button;
 
         public Button.ButtonClickedEvent ClickedEvent => _button.onClick;
@@ -15,7 +15,7 @@ namespace Shop.GUI
 
         public int CostValue
         {
-            set => _costText.text = value.ToString();
+            set => _costText.text = _currencyType == CurrencyType.Free ? "FREE" : value.ToString();
         }
 
         public CurrencyType CurrencyType
@@ -24,8 +24,18 @@ namespace Shop.GUI
             set
             {
                 _currencyType = value;
-                _iconImage.sprite =
-                    ResourcesRepository<Sprite>.Instance.Get(GlobalVariables.CURRENCY_ICONS_PATH[_currencyType]);
+                Sprite sprite = null;
+                _iconImage.gameObject.SetActive(true);
+                if (GlobalVariables.CURRENCY_ICONS_PATH.TryGetValue(_currencyType, out string s))
+                {
+                    sprite = ResourcesRepository<Sprite>.Instance.Get(s);
+                }
+
+                _iconImage.sprite = sprite;
+                if (_currencyType == CurrencyType.Free)
+                {
+                    _iconImage.gameObject.SetActive(false);
+                }
             }
         }
     }

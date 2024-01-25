@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb48c1da071341b5950e3118471e2b67, type: 3}
   m_Name: diamond_armor01_gloves
   m_EditorClassIdentifier: 
+  _iconSprite: {fileID: -963791335356448533, guid: 54c490f4b580f0844b2d6ca94b0d3972, type: 3}
   _cost: []
   _maxCount: 1
   _title: Diamond Gauntlets

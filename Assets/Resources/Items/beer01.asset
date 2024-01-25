@@ -9,21 +9,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe4893e215c04fb793ddd962f5f64408, type: 3}
-  m_Name: golden_sword01
+  m_Script: {fileID: 11500000, guid: a71c41f3a8244c9781a2f7f2ae4d56cf, type: 3}
+  m_Name: beer01
   m_EditorClassIdentifier: 
-  _iconSprite: {fileID: -8419024768148562069, guid: ee04d23995cdfc74594cb0d330f5746d, type: 3}
+  _iconSprite: {fileID: 3465286685962602723, guid: 787f4a7b3bd2a454297769e6365791c7, type: 3}
   _cost:
   - _currencyType: 1
-    _value: 100
-  - _currencyType: 2
-    _value: 1
+    _value: 5
   - _currencyType: 5
-    _value: 1200
+    _value: 1800
+  - _currencyType: 2
+    _value: 100
   - _currencyType: 6
-    _value: 1200
-  _maxCount: 1
-  _title: Delightful Death
-  _description: 
-  _baseDamage: 101
+    _value: 0
+  _maxCount: 100
+  _title: Beer
+  _description: beer
   _weight: 0.15
+  _expirationDate:
+    _day: 0
+    _month: 0
+    _year: 0

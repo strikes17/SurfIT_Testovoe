@@ -1,11 +1,12 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Shop.GUI
 {
     public class GUIResourceWidget : GUIBaseWidget
     {
-        [SerializeField] private TMP_Text _valueText;
+        [SerializeField] private Text _valueText;
 
         public int Value
         {
