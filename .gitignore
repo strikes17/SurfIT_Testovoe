@@ -1,8 +1,4 @@
 Library/
-Logs/
-Packages/
-Temp/
 *.meta
 */idea
-*.meta*;
 Builds/build1_BurstDebugInformation_DoNotShip/
