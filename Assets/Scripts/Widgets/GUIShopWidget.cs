@@ -18,18 +18,19 @@ namespace Shop.GUI
 
         [SerializeField] private GUIProductWidget _productWidgetPrefab;
         [SerializeField] private Transform _productsRootTransform;
-        private Dictionary<string, GUIProductWidget> _boundProductWidgets = new();
-        
+        private Dictionary<string, GUIProductWidget> _productWidgets = new();
+        public IEnumerable<GUIProductWidget> AllProductWidgets => _productWidgets.Values;
+
         public GUIProductWidget GetProductWidget(string internalName)
         {
-            _boundProductWidgets.TryGetValue(internalName, out GUIProductWidget widget);
+            _productWidgets.TryGetValue(internalName, out GUIProductWidget widget);
             return widget;
         }
-        
+
         public GUIProductWidget CreateProductWidgetInstance(BaseProductObject baseProductObject)
         {
             var widget = Instantiate(_productWidgetPrefab, _productsRootTransform);
-            _boundProductWidgets.Add(baseProductObject.name, widget);
+            _productWidgets.Add(baseProductObject.name, widget);
 
             widget.ProductObject = baseProductObject;
             widget.PurchaseButtonClicked += _purchaseButtonClicked;

@@ -77,6 +77,8 @@
      <Compile Include="Assets\Scripts\Other\CurrencyType.cs" />
      <Compile Include="Assets\Scripts\Other\ShopTransaction.cs" />
      <Compile Include="Assets\Scripts\Products\WearProduct.cs" />
+     <Compile Include="Assets\Scripts\Widgets\GUICheatButton.cs" />
+     <Compile Include="Assets\Scripts\Manager\CheatsManager.cs" />
      <Compile Include="Assets\Scripts\Products\FoodProduct.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
@@ -91,6 +93,7 @@
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
      <Compile Include="Assets\Scripts\Other\CurrencyCompound.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
+     <Compile Include="Assets\Scripts\Widgets\GUIResourceWidget.cs" />
      <Compile Include="Assets\Scripts\Other\ResourcesRepository.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />

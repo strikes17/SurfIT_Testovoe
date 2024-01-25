@@ -17,7 +17,7 @@ MonoBehaviour:
   - _currencyType: 1
     _value: 5
   - _currencyType: 5
-    _value: 60
+    _value: 3
   - _currencyType: 2
     _value: 100
   _maxCount: 100

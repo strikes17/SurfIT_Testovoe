@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Shop.GUI;
 using UnityEngine;
 
 namespace Shop
 {
     public class PlayerManager : MonoBehaviour
     {
-        [SerializeField] private ProductsManager _productsManager;
+        [SerializeField] private GUIManager _guiManager;
         protected Dictionary<CurrencyType, int> _resources = new();
         protected Dictionary<string, AbstractProduct> _products = new();
         protected Dictionary<string, float> _timeredProductsTimerValues = new();
@@ -22,6 +23,7 @@ namespace Shop
             _resources.Add(CurrencyType.Rub, 0);
             _resources.Add(CurrencyType.Usd, 0);
             _resources.Add(CurrencyType.Time, 0);
+            _resources.Add(CurrencyType.Free, 0);
         }
 
         private void Update()
@@ -35,11 +37,14 @@ namespace Shop
                 AbstractProduct product = null;
                 if (!_products.TryGetValue(key, out product)) continue;
                 product.TimeLeft -= Time.deltaTime;
-                var timerWidget = _productsManager.GetProductWidget(key).TimerWidget;
+                var timerWidget = _guiManager.ShopWidget.GetProductWidget(key).TimerWidget;
                 timerWidget.Value = (int)product.TimeLeft;
                 if (product.TimeLeft <= 0)
                     RemoveProductByInternalName(key);
             }
+
+            _guiManager.GoldResourceWidget.Value = _resources[CurrencyType.Gold];
+            _guiManager.GemsResourceWidget.Value = _resources[CurrencyType.Gem];
         }
 
         public void AddProduct(AbstractProduct product)
@@ -61,18 +66,13 @@ namespace Shop
             if (_timeredProductsTimerValues.ContainsKey(internalName))
             {
                 _timeredProductsTimerValues.Remove(internalName);
-                _productsManager.GetProductWidget(internalName).LockState = ProductLockState.Locked;
+                _guiManager.ShopWidget.GetProductWidget(internalName).LockState = ProductLockState.Locked;
             }
         }
 
         public bool IfPlayerHasItem(string name)
         {
             return _products.ContainsKey(name);
-        }
-
-        private void OnGUI()
-        {
-            GUILayout.Label($"Gold: {_resources[CurrencyType.Gold]}");
         }
     }
 }

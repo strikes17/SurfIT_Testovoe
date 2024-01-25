@@ -16,12 +16,7 @@ namespace Shop
             LoadProductsInGui();
         }
 
-        public GUIProductWidget GetProductWidget(string internalName)
-        {
-            return _guiManager.ShopWidget.GetProductWidget(internalName);
-        }
-
-        private void CreateShopTransaction(GUIProductWidget productWidget, CurrencyType currencyType)
+        public void CreateShopTransaction(GUIProductWidget productWidget, CurrencyType currencyType)
         {
             var productObject = productWidget.ProductObject;
             if (_playerManager.IfPlayerHasItem(productObject.name))
@@ -53,7 +48,14 @@ namespace Shop
                 product = shopTransaction.ProductObject.CreateProductInstance();
                 productWidget.LockState = ProductLockState.UnlockedTimered;
                 _playerManager.AddProductTimered(product, productObject.TimeToExpire);
-                Debug.Log("Success Timered Product!");
+                Debug.Log($"Unlocked Product: {product.InternalName} for {productObject.TimeToExpire}seconds!");
+            }
+            else if (currencyType == CurrencyType.Free)
+            {
+                product = shopTransaction.ProductObject.CreateProductInstance();
+                productWidget.LockState = ProductLockState.Unlocked;
+                _playerManager.AddProduct(product);
+                Debug.Log($"Free Unlock Of Product! {product.InternalName}");
             }
             else if (shopTransaction.Accomplish())
             {
@@ -61,7 +63,8 @@ namespace Shop
                 _playerManager.Resources[currencyType] -= shopTransaction.Cost;
                 productWidget.LockState = ProductLockState.Unlocked;
                 _playerManager.AddProduct(product);
-                Debug.Log("Success!");
+                Debug.Log(
+                    $"Unlocked Product! {product.InternalName} for cost of: {shopTransaction.Cost} {currencyType}");
             }
             else
             {
