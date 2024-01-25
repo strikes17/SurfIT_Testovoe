@@ -20,8 +20,6 @@ MonoBehaviour:
     _value: 1
   - _currencyType: 5
     _value: 1200
-  - _currencyType: 6
-    _value: 1200
   _maxCount: 1
   _title: Delightful Death
   _description: 

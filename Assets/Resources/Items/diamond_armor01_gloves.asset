@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: diamond_armor01_gloves
   m_EditorClassIdentifier: 
   _iconSprite: {fileID: -963791335356448533, guid: 54c490f4b580f0844b2d6ca94b0d3972, type: 3}
-  _cost: []
+  _cost:
+  - _currencyType: 1
+    _value: 25
   _maxCount: 1
   _title: Diamond Gauntlets
   _description: 'Shiny

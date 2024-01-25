@@ -18,9 +18,10 @@ MonoBehaviour:
     _value: 100
   - _currencyType: 2
     _value: 1
+  - _currencyType: 5
+    _value: 15
   _maxCount: 0
   _title: 
-  _timeToExpire: 0
   _description: 'hfgh
 
 '

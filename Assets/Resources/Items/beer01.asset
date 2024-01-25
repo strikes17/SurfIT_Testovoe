@@ -20,8 +20,6 @@ MonoBehaviour:
     _value: 1800
   - _currencyType: 2
     _value: 100
-  - _currencyType: 6
-    _value: 0
   _maxCount: 100
   _title: Beer
   _description: beer

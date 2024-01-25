@@ -16,9 +16,10 @@ MonoBehaviour:
   _cost:
   - _currencyType: 2
     _value: 99999
+  - _currencyType: 5
+    _value: 100
   _maxCount: 1
   _title: Sword Of Tisyacha Istin
-  _timeToExpire: 0
   _description: 
   _baseDamage: 999999
   _weight: 0.000001
